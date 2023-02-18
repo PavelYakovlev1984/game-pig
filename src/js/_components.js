@@ -59,13 +59,27 @@ const player0Element = document.querySelector('.player--0');
 const player1Element = document.querySelector('.player--1');
 
 //Game initial conditions
-score0Element.textContent = 0;
-score1Element.textContent = 0;
-diceElement.classList.add('hidden');
-const totalScore = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let isPlaying  = true;
+
+let totalScore, currentScore, activePlayer, isPlaying;
+
+const initGame = function () {
+  totalScore = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  isPlaying  = true;
+  score0Element.textContent = 0;
+  score1Element.textContent = 0;
+  current0Element.textContent = 0;
+  current1Element.textContent = 0;
+  player0Element.classList.remove('player--winner');
+  player1Element.classList.remove('player--winner');
+  player0Element.classList.remove('player--active');
+  player1Element.classList.remove('player--active');
+  player0Element.classList.addd('player--active');
+  diceElement.classList.add('hidden');
+}
+
+initGame();
 
 const switchActivePlayer = function () {
     currentScore = 0;
@@ -117,11 +131,4 @@ btnHold.addEventListener('click', function () {
 
 })
 
-btnNew.addEventListener('click', function () {
-  console.log(789);
-// let score0Element = 0;
-// let score1Element = 0;
-// let current0Element = 0;
-// let current1Element = 0;
-
-})
+btnNew.addEventListener('click', initGame);
